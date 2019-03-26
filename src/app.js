@@ -12,6 +12,9 @@ const app = express()
 // SETTINGS
 const PORT = process.env.PORT || 3000
 app.set('port', PORT)
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.set('view engine','handlebars')
+app.set('views', path.join(__dirname, 'views'))
 
 // MIDDLEWARE
 app.use(morgan('dev'))//utilizzo la proprietà dev per vedere il log delle rooting
