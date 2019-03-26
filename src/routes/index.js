@@ -3,7 +3,7 @@
 const router = require('express').Router()
 
 router.get('/', (req, res) =>{
-    res.send('SIamo nella index')
+    res.render('index')
 })
 
 module.exports = router
