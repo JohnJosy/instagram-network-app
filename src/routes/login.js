@@ -11,7 +11,7 @@ const instagram = new Instagram({
 })
 
 router.get('/', (req, res) => {
-    res.render('login')
+    res.redirect('/auth/instagram')
 })
 
 module.exports = router
