@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000
 app.set('port', PORT)
 
 // MIDDLEWARE
-
+app.use(morgan('dev'))//utilizzo la proprietà dev per vedere il log delle rooting
 
 // STATIC FILE 
 
