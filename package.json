@@ -22,5 +22,8 @@
     "express-handlebars": "^3.0.2",
     "morgan": "^1.9.1",
     "node-instagram": "^4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
