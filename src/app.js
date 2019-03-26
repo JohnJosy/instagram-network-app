@@ -8,6 +8,7 @@ const path = require('path')
 const Instagram = require('node-instagram').default;
 
 const indexRouter = require('./routes/index')
+const loginRouter = require('./routes/login')
 
 const app = express()
 
@@ -26,6 +27,7 @@ app.use(morgan('dev'))//utilizzo la proprietà dev per vedere il log delle rooti
 
 // ROUTES
 app.use('/', indexRouter)
+app.use('/login', loginRouter)
 
 // STARTING THE SERVER
 app.listen(app.get('port'), () => {
