@@ -16,7 +16,7 @@ router.get('/', (req, res) =>{
     res.redirect(
         instagram.getAuthorizationUrl(redirectUri,{
             scope: ['basic', 'likes'],
-            state: 'Il tuo stato'
+            state: 'positivo'
         })
     )
 })
