@@ -15,8 +15,10 @@ router.get('/', async (req, res) => {
         const code = req.query.code
         const data = await instagram.authorizeUser(code, redirectUri)
         console.log(data)
+        res.json(data)
     } catch (error) {
         console.log(error)
+        res.json(e)
     }
 })
 
