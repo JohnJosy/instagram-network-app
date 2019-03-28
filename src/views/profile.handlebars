@@ -1,3 +1,18 @@
 <div class="container">
-                <h1>Profile</h1>
+                <h1>{{fullName}}</h1>
+                <h5>{{userName}}</h5>
+                <div class="card" style="width: 13rem;">
+                    <img src="{{imgProfile}}" class="card-img-top" alt="Network Service">
+                    <div class="card-body">
+                        <p class="card-text">{{bioProfile}}</p>
+                    </div>
+                </div>
+                {{#each posts}}
+                    <div class="card" style="width: 13rem;">
+                    <img src="{{posts.images}}" class="card-img-top" alt="Network Service">
+                    <div class="card-body">
+                        <p class="card-text">{{posts.link}}</p>
+                    </div>
+                </div>
+                {{/each}}
             </div>

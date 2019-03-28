@@ -79,7 +79,7 @@ module.exports = {
     }
 }
 ```
-
+## Poi creo la rotta per il login /login in caso non siamo già autenticati non ci sarà bisogno altrimenti dobbiamo loggarci con autenticazione
 ## Dentro /routes/login.js creo un Istanza Di Insagram e gli passo dentro le parentesi un oggetto di configurazione per l'esattezza devo pasasrgli il modulo creato in Keys.js (tutto ciò per creare un autenticazione con Instagram)
 ## Facendo così richiamo il modulo instagram chiamato nel file /model/keys.js e accedo alle proprità {clientId, clientSecret} presenti dentro l'oggetto instagram
 ```javascript
@@ -168,15 +168,67 @@ router.get('/handleauth', async (req, res) => {
 })
 
 ```
-##=> Una volta che prendo i dati e li passo a Instagram, alla fine reindirizzo con tuti i dati a '/profile ''
-
+##=> Una volta che prendo i dati e li passo a Instagram, alla fine reindirizzo con tuti i dati a '/profile '' 
 ``` javascript
     res.redirect('/profile')
 
 ```
+##Ora che reindirizzatto a /profile devo portare i dati che avevo in '/handleauth' e da lì poi posso accedere a foto post ect  
+###Prima di renderizzare la pagine devo fare prima una richiesta (non più di autenticazione perchè sono già autenticato)
+``` javascript
+    'use strict'
+const router = require('express').Router()
+const Instagram = require('node-instagram').default
+const {clientId, clientSecret, accessToken} = require('../models/keys').instagram
+const instagram = new Instagram({
+    clientId: clientId,
+    clientSecret: clientSecret,
+    accessToken: accessToken
+})
+router.get('/', async (req, res) => {
+    try {
+        const media = await instagram.get('users/self/media/recent')//Con questo richiestaa instagram mi attacco al'endPonint di instagram per prendere i dati dei post(immagini likes ect)
+        console.log('Dati Post: ', media )
+        res.render('profile')
+    } catch (error) {
+        console.log(error)
+    }
+})
 
-## Poi creo la rotta per il login /login in caso non siamo già autenticati non ci sarà bisogno altrimenti dobbiamo loggarci con autenticazione
+module.exports = router
 
-## Una volta loggato reindirizzeremo l utente in uan pagina chiamata /profile 
+```
+### Richiedo anche i dati del foto profilo nome utente ect
+``` javascript
+    const profileUserData = await instagram.get('users/self')
+    console.log(profileUserData)
+
+```
+###Grazie ai dati che tiro fuori dalla console 'console.log('Dati Post: ', media )' posso recuperarli e usarli per mostrarli a video
+``` javascript
+    const profilePostsData = await instagram.get('users/self/media/recent')
+    console.log(profilePostsData)
+
+```
+###Ora Stampo a video i miei dati grazie alla funzione 'res.render('profile') pasandogli un oggetto che avrà le proprietà prese dalle mie due richieste di profilePostsData e profileUserData
+### ProfiloUtente { data:
+  ### { id: '8137087849',
+  ###   username: 'network_service_',
+  ###   profile_picture: 'https://scontent.cdninstagram.com/vp/b264d8d7bb1022bceb84ee238722a945/5D2DA3B7/t51.2885-19/36085905_390942574760171_5317405555260653568_n.jpg?_nc_ht=scontent.cdninstagram.com',
+  ###   full_name: 'Network Service',
+  ###   bio: 'Network Service è l’agenzia che lavora con soli Hotel, si occupa del tuo sito e del tuo marketing operativo. Obiettivo? Dipendere meno dalle Ota.',
+  ###   website: 'https://www.network-service.it/',
+  ###   is_business: true,
+  ###   counts: { media: 31, follows: 522, followed_by: 149 } },
+ ### meta: { code: 200 } }
+``` javascript
+    res.render('profile', {
+        userName: profileUserData.data.username,
+        imgProfile: profileUserData.data.profile_picture,
+        fullName: profileUserData.data.full_name,
+        bioProfile: profileUserData.data.bio
+    })
+
+```
 
 ## In fine ci sarà una rotta per il logOut=> /logout
