@@ -10,7 +10,7 @@ const Instagram = require('node-instagram').default;
 
 const indexRouter = require('./routes/index')//Richiamo il routing dell'index
 const loginRouter = require('./routes/login')//Richiamo il routing del login
-const profiloRouter = require('./routes/profile')
+const profileRouter = require('./routes/profile')
 const authInstagram = require('./routes/auth/instagram')//Richiamo il routing per l'autenticazione
 const handleAuth = require('./routes/handleauth')//Richiamo il routing per le richieste
 
@@ -38,7 +38,7 @@ app.use('/', indexRouter)
 app.use('/login', loginRouter)
 app.use('/auth/instagram', authInstagram)
 app.use('/handleauth', handleAuth)
-app.use('profile', profiloRouter)
+app.use('/profile', profileRouter)
 
 // STARTING THE SERVER
 app.listen(app.get('port'), () => {
