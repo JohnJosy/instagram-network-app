@@ -168,7 +168,12 @@ router.get('/handleauth', async (req, res) => {
 })
 
 ```
-##=> poi reindirizzo con tuti i dati a /profile 
+##=> Una volta che prendo i dati e li passo a Instagram, alla fine reindirizzo con tuti i dati a '/profile ''
+
+``` javascript
+    res.redirect('/profile')
+
+```
 
 ## Poi creo la rotta per il login /login in caso non siamo già autenticati non ci sarà bisogno altrimenti dobbiamo loggarci con autenticazione
 

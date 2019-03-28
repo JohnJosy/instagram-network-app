@@ -1,8 +1,13 @@
+'use strict'
 const router = require('express').Router
 
 
-router.get('/', (req, res) =>{
-    res.render('profile')
+router.get('/', (req, res) => {
+    try {
+        res.send('O pdio')
+    } catch (error) {
+        console.log(error)
+    }
 })
 
-module.exports = route
+module.exports = router
