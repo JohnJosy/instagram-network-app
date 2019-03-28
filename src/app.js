@@ -24,8 +24,8 @@ app.set('views', path.join(__dirname, 'views'))//path.join unisce percorsi ; __d
 
 // MIDDLEWARE
 app.use(morgan('dev'))//utilizzo la proprietà dev per vedere il log delle rooting
-app.use(session({
-    secret: 'Parola segreta',
+app.use(session({//Utilizzo per salvare i dati nel session cookies
+    secret: 'Parola segreta', //Perchè la sessione non si alteri
     signed: true
 }))
 
