@@ -1,10 +1,10 @@
 'use strict'
-const router = require('express').Router
+const router = require('express').Router()
 
 
 router.get('/', (req, res) => {
     try {
-        res.send('O pdio')
+        res.render('profile')
     } catch (error) {
         console.log(error)
     }
