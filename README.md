@@ -126,7 +126,39 @@ router.get('/handleauth', async (req, res) => {
         const code = req.query.code
         const data = await instagram.authorizeUser(code, redirectUri)
         req.session.accessToken = data.access_token
-        req.session.userId = data.user.id
+        req.session.userId = data.user.id// il token e user Id li salvo nella sessione del navigatore perchè mi permettono di eseguire richieste alle foto post di instgram
+        console.log(data)
+        res.json(data)//mostro i dati sulla pagina
+    } catch (error) {
+        console.log(error)
+         res.json(e)
+    }
+})
+
+```
+##In App js creo il Middleware oer salvare dati nella cookies session
+``` javascript
+
+app.use(session({//Utilizzo per salvare i dati nel session cookies
+    secret: 'Parola segreta', //Perchè la sessione non si alteri
+    signed: true
+}))
+
+```
+##Ora configuro all'istanza di Instagram (instagram) il Token e lo user Id  instagram.config.accessToken = req.session.accessToken instagram.config.userId =  req.session.userId
+
+``` javascript
+const redirectUri = 'http://localhost:3000/handleauth' 
+router.get('/handleauth', async (req, res) => {
+    try {
+        const code = req.query.code
+        const data = await instagram.authorizeUser(code, redirectUri)
+        req.session.accessToken = data.access_token
+        req.session.userId = data.user.id// il token e user Id li salvo nella sessione del navigatore perchè mi permettono di eseguire richieste alle foto post di instgram
+
+        instagram.config.accessToken = req.session.accessToken
+        instagram.config.userId =  req.session.userId
+
         console.log(data)
         res.json(data)//mostro i dati sulla pagina
     } catch (error) {
