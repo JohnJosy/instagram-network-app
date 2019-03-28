@@ -118,14 +118,20 @@ app.get('/auth/instagram', async (req, res) => {
 
 ## Creo la rotta in cui farò arrivare tutti i dati /handleauth => su handleauth farò reindirizzare la risposta che ho chiesto a /auth/instagram e mi ritorna un 'codice' che mi permetterà di eseguire un'altra richiesta a isntagram per prendere i dati
 ###Quindi prima di tutto ricevo il codice con ' const code = req.query.code' e salvo il codice che ricevo in 'code'; Ora con questa variabile code posso fare un'altra petizione Instagram e chiedo dati; Per chiedere dati a Instagram utilizzo chiamate asincrone e utlizzo async await prendo il codide 'code' e faccio un redirect ad handleauth una volta finito il processo
+### I 'data' che ricevo li devo salvare da qualche parte per poterli richiedere (per poter chiedere foto post likes abbiamo bisogno di del access_token); così lo salvo nell'instanza di 'instagram' => 1. salvo dentr req.session.access_token = data.access_token; 2. Lo faccio anche per userId
 ``` javascript
 const redirectUri = 'http://localhost:3000/handleauth' 
 router.get('/handleauth', async (req, res) => {
     try {
         const code = req.query.code
         const data = await instagram.authorizeUser(code, redirectUri)
+        req.session.accessToken = data.access_token
+        req.session.userId = data.user.id
+        console.log(data)
+        res.json(data)//mostro i dati sulla pagina
     } catch (error) {
         console.log(error)
+         res.json(e)
     }
 })
 

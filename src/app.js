@@ -5,6 +5,7 @@ const express = require('express')
 const exphbs  = require('express-handlebars')
 const morgan = require('morgan')
 const path = require('path')
+const session = require ('cookie-session')
 const Instagram = require('node-instagram').default;
 
 const indexRouter = require('./routes/index')//Richiamo il routing dell'index
@@ -23,6 +24,10 @@ app.set('views', path.join(__dirname, 'views'))//path.join unisce percorsi ; __d
 
 // MIDDLEWARE
 app.use(morgan('dev'))//utilizzo la proprietà dev per vedere il log delle rooting
+app.use(session({
+    secret: 'Parola segreta',
+    signed: true
+}))
 
 // STATIC FILE 
 
