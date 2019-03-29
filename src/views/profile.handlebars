@@ -1,5 +1,6 @@
 <div class="row p-2">
-    <div class="col-md-3">{{!-- Colonna da 3 - DATI PROFILO--}}
+    {{!-- Colonna da 3 - DATI PROFILO--}}
+    <div class="col-md-3">
         <div class="card ">
             <img src="{{user.profile_picture}}" alt="{{user.full_name}}" class="card-img-top">
             <hr>
@@ -8,23 +9,26 @@
                 <p class="p-2"><strong>{{user.username}}</strong></p>
                 <p class="p-2">{{user.bio}}</p>
                 <hr>
-                {{user.counts.media}} <i class="fas fa-camera-retro"></i> 
-                {{user.counts.follows}} <i class="fas fa-heart"></i>
-                {{user.counts.followed_by}} <i class="fas fa-users"></i>
+                {{user.counts.media}} <i style="color: brown" class="fas fa-camera-retro"></i> 
+                {{user.counts.follows}} <i style="color:red" class="fas fa-heart"></i>
+                {{user.counts.followed_by}} <i style="color: blue" class="fas fa-users"></i>
             </div>
             <div class="card-footer">
                 <a href="{{user.website}}" target="_blank" class="btn btn-light btn-block">Network Service</a> 
             </div>
         </div>
     </div>
-    <div class="col-md-9"> {{!-- Colonna da 9 --}}
+    <div class="col-md-9"> {{!-- Colonna da 9 per le immagini--}}
         <div class="row">
             {{#each posts}}
                 <div class="col-md-4">
                     <div class="card mb-2">
-                        <img src="{{images.thumbnail.url}}" alt="">
+                        <img src="{{images.low_resolution.url}}" lass="card-img-top" alt="">
+                        {{!-- <img src="{{images.thumbnail.url}}" class="card-img-top" alt=""> --}}
                         <div class="card-body">
-                           {{caption.text}}
+                           <p class="p-2">{{caption.text}}</p>
+                           <p class="p-2">Creato da: {{user.full_name}}</p>
+                           {{created_time}}</p>
                         </div>
                     </div>
                 </div>

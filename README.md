@@ -221,6 +221,7 @@ module.exports = router
   ###   is_business: true,
   ###   counts: { media: 31, follows: 522, followed_by: 149 } },
  ### meta: { code: 200 } }
+ ###TUtti i dati sia del profilo che dei media li precno dal json che ricevo in risposta
 ``` javascript
     res.render('profile', {
         userName: profileUserData.data.username,
@@ -230,5 +231,53 @@ module.exports = router
     })
 
 ```
+##Per passare i posts, essendo un array devo utilizzare un ciclo dentro la view 
+``` html
+        {{#each posts}}<!-- Questo è l'oggetto che mi restituisce i dati dentro profile.js-->
+            <div class="col-md-4">
+                <div class="card mb-2">
+                    <img src="" alt="">
+                    <div class="card-body">
+                        {{link}}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+```
+###Per prendere le immagini che sono un array di oggetti cerco di accedere ad un unico elemento in profile.js
+``` javascript
+    console.log('Accedo a un Immagine ', mediaPostsData.data[0].images) //per i media(mediaPostsData) accedo al primo oggetto (data[0]) e prendo l'immagine(images)
+    /* Ricevo questi dati */
+    { /* Accedo a un Immagine */
+        thumbnail: { 
+            width: 150,
+            height: 150,
+            url: 'https://scontent.cdninstagram.com/vp/ea217f61684a2533d3eb09c65e14e851/5D39AE5E/t51.2885-15/e35/c0.0.1013.1013a/s150x150/46671217_368765270548040_4618735739296225885_n.jpg?_nc_ht=scontent.cdninstagram.com' 
+        },
+        low_resolution:{ 
+            width: 320,
+            height: 319,
+            url: 'https://scontent.cdninstagram.com/vp/ee3316f152747f2f4f1cca5cbaa52337/5D4B2F06/t51.2885-15/e35/s320x320/46671217_368765270548040_4618735739296225885_n.jpg?_nc_ht=scontent.cdninstagram.com'
+        },
+        standard_resolution: {
+            width: 640,
+            height: 639,
+            url: 'https://scontent.cdninstagram.com/vp/c6ad45deb49a066624bc498636e6a5b7/5D456A51/t51.2885-15/sh0.08/e35/s640x640/46671217_368765270548040_4618735739296225885_n.jpg?_nc_ht=scontent.cdninstagram.com' 
+        }
+    }
+    console.log('/Profile DatiPostUtente: ', mediaPostsData.data[3].caption)
+    { //Media Caption: 
+        id: '17933941315181019',
+        text: 'Ok il nostro team building non è fatto di giochini e abbracci, ma pensiamo che un aperitivo top cosi’, possa andare bene 😍 #networkers #team #darsena #top',
+        created_time: '1532455966',
+        from: { 
+            id: '8137087849',
+            full_name: 'Network Service',
+            profile_picture: 'https://scontent.cdninstagram.com/vp/b264d8d7bb1022bceb84ee238722a945/5D2DA3B7/t51.2885-19/36085905_390942574760171_5317405555260653568_n.jpg?_nc_ht=scontent.cdninstagram.com',
+            username: 'network_service_' 
+        }
+    }
+```
+##Per la data creo una Funzione accessibile e tutte le mie rotte quindi la creo in app.js prima delle routes per convertire la data di creazione in un formato leggibile e vado a creare un Middleware da 0
 
 ## In fine ci sarà una rotta per il logOut=> /logout

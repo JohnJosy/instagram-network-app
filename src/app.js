@@ -6,8 +6,7 @@ const exphbs  = require('express-handlebars')
 const morgan = require('morgan')
 const path = require('path')
 const session = require ('cookie-session')
-const Instagram = require('node-instagram').default;
-
+const hbs = require('hbs')
 const indexRouter = require('./routes/index')//Richiamo il routing dell'index
 const loginRouter = require('./routes/login')//Richiamo il routing del login
 const profileRouter = require('./routes/profile')
@@ -29,6 +28,13 @@ app.use(session({//Utilizzo per salvare i dati nel session cookies
     secret: 'Parola segreta', //Perchè la sessione non si alteri
     signed: true
 }))
+//Creo Middleware per gestire le date
+//Creo Middleware per gestire le date
+hbs.registerHelper('dataFormattata', (date) => {
+    let dataPost = new Date(date * 1000)
+    return dataPost.toLocaleDateString()
+})
+
 
 // STATIC FILE 
 
