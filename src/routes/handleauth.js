@@ -20,8 +20,8 @@ router.get('/', async (req, res) => {
         instagram.config.accessToken = req.session.accessToken//passo a instagram accessToken e userId per poter far arrivare i dati da instagra
         instagram.config.userId = req.session.userId//passo a instagram accessToken e userId per poter far arrivare i dati da instagra
 
-        console.log('dati per Autenticazione', instagram)
-        console.log('dati Utente', data)
+        //console.log('/handleauth dati per Autenticazione', instagram)
+        //console.log('/handleauth dati Utente', data)
         /* res.json(data) */
        res.redirect('/profile')
 
