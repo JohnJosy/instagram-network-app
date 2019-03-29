@@ -12,9 +12,10 @@ const instagram = new Instagram({
 router.get('/', async (req, res) => {
     try {
         const profileUserData = await instagram.get('users/self')//Predno i dati del profilo
-        console.log('/profile ProfiloUtente', profileUserData)//Stampo dati profilo
+        //console.log('/profile ProfiloUtente', profileUserData)//Stampo dati profilo
         const mediaPostsData = await instagram.get('users/self/media/recent')//Prendo i dati dei Post del profilo
-        //console.log('/Profile DatiPostUtente: ', mediaPostsData )// Stampo dati Post
+        console.log('/Profile DatiPostUtente: ', mediaPostsData)// Stampo dati Post
+        //console.log('Accedo a un Immagine ', mediaPostsData.data[0].images)
         res.render('profile',{
             user: profileUserData.data,
             posts: mediaPostsData.data
