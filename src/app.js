@@ -32,7 +32,10 @@ app.use(session({//Utilizzo per salvare i dati nel session cookies
 //Creo Middleware per gestire le date
 Handlebars.registerHelper('dataFormattata', (date) => {
     let dataPost = new Date(date * 1000)
-    return dataPost.toLocaleString()
+    let dataDay = dataPost.getDate()
+    let dataMonth = dataPost.getMonth()
+    let dataYear = dataPost.getFullYear()
+    return dataDay + '-' + dataMonth + '-' + dataYear
 })
 
 
