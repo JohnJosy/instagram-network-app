@@ -6,7 +6,7 @@ const exphbs  = require('express-handlebars')
 const morgan = require('morgan')
 const path = require('path')
 const session = require ('cookie-session')
-const hbs = require('hbs')
+const Handlebars = require('handlebars');
 const indexRouter = require('./routes/index')//Richiamo il routing dell'index
 const loginRouter = require('./routes/login')//Richiamo il routing del login
 const profileRouter = require('./routes/profile')
@@ -18,6 +18,7 @@ const app = express()
 // SETTINGS
 const PORT = process.env.PORT || 3000
 app.set('port', PORT)
+//Template Engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine','handlebars')
 app.set('views', path.join(__dirname, 'views'))//path.join unisce percorsi ; __dirname => da il percorso attuale
@@ -29,10 +30,9 @@ app.use(session({//Utilizzo per salvare i dati nel session cookies
     signed: true
 }))
 //Creo Middleware per gestire le date
-//Creo Middleware per gestire le date
-hbs.registerHelper('dataFormattata', (date) => {
+Handlebars.registerHelper('dataFormattata', (date) => {
     let dataPost = new Date(date * 1000)
-    return dataPost.toLocaleDateString()
+    return dataPost.toLocaleString()
 })
 
 

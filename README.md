@@ -278,6 +278,14 @@ module.exports = router
         }
     }
 ```
-##Per la data creo una Funzione accessibile e tutte le mie rotte quindi la creo in app.js prima delle routes per convertire la data di creazione in un formato leggibile e vado a creare un Middleware da 0
+##Per la data creo una Funzione accessibile e tutte le mie rotte quindi la creo in app.js prima delle routes per convertire la data di creazione in un formato leggibile e vado a creare un Middleware da 0 (per poter creare una funzione ed utilizzarla con handlebars devo installare il modulo 'handlebars', cos' potrò creareun helper ed utilizzarlo)
+``` javascript
+    //Creo Middleware per gestire le date
+    Handlebars.registerHelper('dataFormattata', (date) => {
+        let dataPost = new Date(date * 1000)
+        return dataPost.toLocaleDateString()
+    })
+
+```
 
 ## In fine ci sarà una rotta per il logOut=> /logout
