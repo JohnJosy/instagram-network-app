@@ -29,6 +29,7 @@ app.use(session({//Utilizzo per salvare i dati nel session cookies
     secret: 'Parola segreta', //Perchè la sessione non si alteri
     signed: true
 }))
+
 //Creo Middleware per gestire le date
 Handlebars.registerHelper('dataFormattata', (date) => {
     let dataPost = new Date(date * 1000)
@@ -40,7 +41,7 @@ Handlebars.registerHelper('dataFormattata', (date) => {
 
 
 // STATIC FILE 
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 // ROUTES
 app.use('/', indexRouter)

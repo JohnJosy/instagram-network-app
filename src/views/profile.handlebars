@@ -1,9 +1,12 @@
 <div class="row p-2">
     {{!-- Colonna da 3 - DATI PROFILO--}}
-    <div class="col-md-3">
-        <div class="card ">
+    <div class="col-md-4">
+        <div class="card">
             <img src="{{user.profile_picture}}" alt="{{user.full_name}}" class="card-img-top">
-            <hr>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title p-2">{{user.full_name}}</h5>
                 <p class="p-2"><strong>{{user.username}}</strong></p>
@@ -18,7 +21,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9"> {{!-- Colonna da 9 per le immagini--}}
+    <div class="sp20"></div>
+    <div class="col-md-12"> {{!-- Colonna da 9 per le immagini--}}
         <div class="row">
             {{#each posts}}
                 <div class="col-md-4">
