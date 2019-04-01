@@ -285,7 +285,7 @@ module.exports = router
         let dataPost = new Date(date * 1000)
         return dataPost.toLocaleDateString()
     })
-
+    // nel template utilizzo la seguente sitassi per stampare a video il risultato della {{funzione e del suo parametro}} {{dataFormattata created_time}}
 ```
 
 ## In fine ci sarà una rotta per il logOut=> /logout
