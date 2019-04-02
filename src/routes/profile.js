@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         const profileUserData = await instagram.get('users/self')//Predno i dati del profilo
         //console.log('/profile ProfiloUtente', profileUserData)//Stampo dati profilo
         const mediaPostsData = await instagram.get('users/self/media/recent')//Prendo i dati dei Post del profilo
-        //console.log('/Profile DatiPostUtente: ', mediaPostsData)// Stampo dati Post di tutto l'array di oggetti
+        console.log('/Profile DatiPostUtente: ', mediaPostsData)// Stampo dati Post di tutto l'array di oggetti
         console.log('Accedo a un Immagine ', mediaPostsData.data[0].images) //Stampo la prima immagine dell'array di oggetti
         //console.log('Data', mediaPostsData.data[0].created_time)// Stampo la prima data di creazione dell'array
         res.render('profile',{
