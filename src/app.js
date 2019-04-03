@@ -18,6 +18,7 @@ const app = express()
 // SETTINGS
 const PORT = process.env.PORT || 3000
 app.set('port', PORT)
+
 //Template Engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine','handlebars')
@@ -41,7 +42,7 @@ Handlebars.registerHelper('dataFormattata', (date) => {
 
 
 // STATIC FILE 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('src/public'));
 
 // ROUTES
 app.use('/', indexRouter)

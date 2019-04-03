@@ -288,4 +288,10 @@ module.exports = router
     // nel template utilizzo la seguente sitassi per stampare a video il risultato della {{funzione e del suo parametro}} {{dataFormattata created_time}}
 ```
 
+##Per i file statici creo nel file main.handlebars  <link rel="stylesheet" href="css/style.css"> e nel app.js il seguente codice
+``` javascript
+     // STATIC FILE 
+    app.use(express.static('src/public'));   
+
+```
 ## In fine ci sarà una rotta per il logOut=> /logout
