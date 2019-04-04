@@ -295,3 +295,21 @@ module.exports = router
 
 ```
 ## In fine ci sarà una rotta per il logOut=> /logout
+### Creo la rotta e il collegamento poi in logout.js mi porto dietro  il accessToken userId salvato nella sessionme del navigatore; e poi grazie a 'delete' cancello i dati dalla sessione ed eseguo un redirect alla home
+``` javascript
+    const accesTokenLogout = delete req.session.accessToken
+    const userIdLogout = delete req.session.userId
+
+    router.get('/',  (req, res) => {
+    try {
+        const accesTokenLogout = delete req.session.accessToken
+        console.log('Logout accesTokenLogout: ', accesTokenLogout)
+        const userIdLogout = delete req.session.userId
+        console.log('Logout userIdLogout: ', userIdLogout)
+        res.redirect('/')
+    } catch (err) {
+        console.log(err)
+        res.json(err)
+    }
+})
+```
