@@ -17,7 +17,7 @@ const logoutRouter = require('./routes/logout')//Richiamo il routing per il logo
 const app = express()
 
 // SETTINGS
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 app.set('port', PORT)
 
 //Template Engine

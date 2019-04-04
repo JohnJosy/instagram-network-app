@@ -8,7 +8,8 @@ const instagram = new Instagram({
     clientSecret: clientSecret,
     accessToken: accessToken
 })
-const redirectUri = 'http://localhost:3000/handleauth' 
+/* const redirectUri = 'http://localhost:3000/handleauth'  */
+const redirectUri = 'https://frozen-bayou-63406.herokuapp.com/handleauth'
 //Una volta fatta l'autenticazione da /auth/instagram arrivo qua
 router.get('/', async (req, res) => {
     try {
