@@ -12,6 +12,7 @@ const loginRouter = require('./routes/login')//Richiamo il routing del login
 const profileRouter = require('./routes/profile')
 const authInstagram = require('./routes/auth/instagram')//Richiamo il routing per l'autenticazione
 const handleAuth = require('./routes/handleauth')//Richiamo il routing per le richieste
+const logoutRouter = require('./routes/logout')//Richiamo il routing per il logout
 
 const app = express()
 
@@ -50,6 +51,7 @@ app.use('/login', loginRouter)
 app.use('/auth/instagram', authInstagram)
 app.use('/handleauth', handleAuth)
 app.use('/profile', profileRouter)
+app.use('/logout', logoutRouter)
 
 // STARTING THE SERVER
 app.listen(app.get('port'), () => {
