@@ -4,10 +4,8 @@ const router = require('express').Router()
 
 router.get('/',  (req, res) => {
     try {
-        const accesTokenLogout = delete req.session.accessToken
-        console.log('Logout accesTokenLogout: ', accesTokenLogout)
-        const userIdLogout = delete req.session.userId
-        console.log('Logout userIdLogout: ', userIdLogout)
+        delete req.session.accessToken
+        delete req.session.userId
         res.redirect('/')
     } catch (err) {
         console.log(err)
